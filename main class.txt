@@ -1,0 +1,42 @@
+import java.time.LocalDate;
+
+public class App {
+
+    public static void main(String[] args) {
+        SettingsLoader loader = new SettingsLoader();
+        UserSettings settings = loader.load("settings.conf");
+
+        OrderService orderService = new OrderService();
+        PaymentService paymentService = new PaymentService();
+        ShippingService shippingService = new ShippingService();
+        DiscountService discountService = new DiscountService();
+        LogService logService = new LogService();
+        NotificationService notificationService = new NotificationService();
+
+        OrderManagementFacade manager = new OrderManagementFacade(
+                orderService,
+                paymentService,
+                shippingService,
+                discountService,
+                logService,
+                notificationService
+        );
+        Order order = new Order(
+                "Ali",
+                101,
+                2,
+                999.99,
+                "Karachi",
+                true,
+                "Handle carefully",
+                LocalDate.of(2025, 11, 12)
+        );
+        manager.placeOrder(order, settings);
+        double discountedBill = discountService.applyUserDiscount(settings.getUserType(), 5000);
+        System.out.println("Discounted Total: " + discountedBill);
+        int shippingCost = shippingService.computeShippingCost(35);
+        System.out.println("Shipping Cost: " + shippingCost);
+        logService.exportToFile("logs.txt");
+        manager.notifyUser("Ali", "Your order has been processed successfully!");
+    }
+}

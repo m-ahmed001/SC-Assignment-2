@@ -1,0 +1,3 @@
+public class NotificationService {
+    public void send(String userName, String message);
+}

@@ -1,0 +1,3 @@
+public class DiscountService {
+    public double applyUserDiscount(int userType, double bill);
+}

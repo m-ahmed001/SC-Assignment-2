@@ -1,0 +1,3 @@
+public class SettingsLoader {
+    public UserSettings load(String fileName);
+}

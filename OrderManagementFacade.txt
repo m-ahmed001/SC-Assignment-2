@@ -1,0 +1,11 @@
+public class OrderManagementFacade {
+    private OrderService orderService;
+    private PaymentService paymentService;
+    private ShippingService shippingService;
+    private DiscountService discountService;
+    private LogService logService;
+    private NotificationService notificationService;
+
+    public void placeOrder(Order order, UserSettings settings);
+    public void notifyUser(String name, String message);
+}

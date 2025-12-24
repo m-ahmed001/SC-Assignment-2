@@ -1,0 +1,4 @@
+class UserSettings {
+    private int userType;
+    private PaymentMethod paymentMethod;
+}
